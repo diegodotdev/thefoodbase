@@ -5,9 +5,10 @@ import { Loader, Plus, Trash, Upload } from "lucide-react";
 import { v4 as uuidv4 } from "uuid";
 import { sanity } from "@/db/sanity";
 import { createRecipe } from "@/lib/requests";
-import { getSession } from "next-auth/react";
+import { getSession, useSession } from "next-auth/react";
 import prisma from "@/db/prisma";
 import { GetServerSidePropsContext } from "next/types";
+import { redirect } from "next/navigation";
 
 type Object = {
   id: string;
@@ -23,6 +24,7 @@ export default function Create({ id }: any) {
   const [instruction, setInstruction] = useState("");
   const [instructions, setInstructions] = useState<Object[]>([]);
   const [loading, setLoading] = useState(false);
+  const { data: session } = useSession();
 
   const addToArray = (array: "ing" | "ins") => {
     if (array === "ing") {
@@ -79,6 +81,8 @@ export default function Create({ id }: any) {
       setLoading(false);
     }
   };
+
+  if (!session) redirect("/");
   return (
     <div className="w-full min-h-[88vh] py-10">
       <Head>
@@ -238,13 +242,6 @@ export const getServerSideProps = async (
   context: GetServerSidePropsContext
 ) => {
   const session = await getSession(context);
-  if (!session) {
-    return {
-      redirect: {
-        destination: "/",
-      },
-    };
-  }
 
   const user = await prisma.user.findUnique({
     where: {

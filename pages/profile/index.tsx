@@ -1,4 +1,4 @@
-import { getSession } from "next-auth/react";
+import { getSession, useSession } from "next-auth/react";
 import { GetServerSidePropsContext } from "next";
 import prisma from "@/db/prisma";
 import type { User } from "@/types";
@@ -7,12 +7,16 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { ExternalLink, Trash } from "lucide-react";
 import { deleteRecipe } from "@/lib/requests";
+import { redirect } from "next/navigation";
 
 type Props = {
   result: User;
 };
 
 export default function Profile({ result }: Props) {
+  const { data: session } = useSession();
+
+  if (!session) redirect("/");
   return (
     <div className="py-10 flex flex-col gap-8">
       <Head>
@@ -64,13 +68,6 @@ export const getServerSideProps = async (
   context: GetServerSidePropsContext
 ) => {
   const session = await getSession(context);
-  if (!session) {
-    return {
-      redirect: {
-        destination: "/",
-      },
-    };
-  }
 
   const user = await prisma.user.findUnique({
     where: {
