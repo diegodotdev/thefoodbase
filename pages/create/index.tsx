@@ -8,7 +8,6 @@ import { createRecipe } from "@/lib/requests";
 import { getSession, useSession } from "next-auth/react";
 import prisma from "@/db/prisma";
 import { GetServerSidePropsContext } from "next/types";
-import { redirect } from "next/navigation";
 
 type Object = {
   id: string;
@@ -24,7 +23,6 @@ export default function Create({ id }: any) {
   const [instruction, setInstruction] = useState("");
   const [instructions, setInstructions] = useState<Object[]>([]);
   const [loading, setLoading] = useState(false);
-  const { data: session } = useSession();
 
   const addToArray = (array: "ing" | "ins") => {
     if (array === "ing") {
@@ -82,7 +80,6 @@ export default function Create({ id }: any) {
     }
   };
 
-  if (!session) redirect("/");
   return (
     <div className="w-full min-h-[88vh] py-10">
       <Head>
@@ -248,6 +245,14 @@ export const getServerSideProps = async (
       email: session?.user?.email || "",
     },
   });
+
+  if (!session) {
+    return {
+      redirect: {
+        destination: "/",
+      },
+    };
+  }
 
   return {
     props: {
