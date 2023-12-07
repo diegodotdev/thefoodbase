@@ -13,7 +13,7 @@ export default function App() {
         </p>
         <p className="text-sm text-muted-foreground text-center sm:w-1/2">
           Welcome to The FoodBase, where culinary creativity meets community!
-          Say goodbye to bland meals and uninspiring recipes; we're here to
+          Say goodbye to bland meals and uninspiring recipes; we&#39;re here to
           elevate your cooking experience to a whole new level.
         </p>
         <SignedIn>
