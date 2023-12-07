@@ -28,17 +28,17 @@ export default function Page({ params }: { params: { id: string } }) {
       </div>
     );
   return (
-    <div className="w-full flex gap-8 min-h-[73vh] py-10">
-      <div className="w-1/2 min-h-[73vh] flex justify-start items-center flex-col gap-4">
+    <div className="w-full flex gap-8 min-h-[73vh] py-10 flex-col md:flex-row ">
+      <div className="w-full md:w-1/2 min-h-[73vh] flex justify-start items-center flex-col gap-4">
         <p className="text-lg font-[600] w-4/5 text-center">{recipe?.title}</p>
         <Image
           src={recipe?.image as string}
           alt={recipe?.title as string}
           width={500}
           height={500}
-          className="w-4/5 h-[250px] object-cover rounded-lg"
+          className="w-full md:w-4/5 h-[250px] object-cover rounded-lg"
         />
-        <div className="w-4/5 flex justify-end items-center mx-auto">
+        <div className="w-full md:w-4/5 flex justify-end items-center mx-auto">
           <Link href={`/cooks/${recipe?.userId}`}>
             <div className="flex items-center gap-1">
               <Image
@@ -52,14 +52,14 @@ export default function Page({ params }: { params: { id: string } }) {
             </div>
           </Link>
         </div>
-        <p className="w-4/5 text-muted-foreground text-sm">
+        <p className="w-full md:w-4/5 text-muted-foreground text-sm">
           Description:
           <br />
           {recipe?.description}
         </p>
       </div>
-      <div className="w-1/2 flex flex-col gap-8">
-        <div className="w-4/5 mx-auto flex flex-col gap-4">
+      <div className="w-full md:w-1/2 flex flex-col gap-8">
+        <div className="w-full md:w-4/5 mx-auto flex flex-col gap-4">
           <div className="w-full flex rounded-full overflow-hidden border border-gray-200">
             <button
               onClick={() => setActive("ing")}
@@ -85,7 +85,7 @@ export default function Page({ params }: { params: { id: string } }) {
             </button>
           </div>
         </div>
-        <div className="w-4/5 mx-auto flex flex-col gap-8">
+        <div className="w-full md:w-4/5 mx-auto flex flex-col gap-8">
           {active === "ing"
             ? recipe?.ingredients?.map((i, idx) => <p key={idx}>- {i}</p>)
             : recipe?.instructions?.map((i, idx) => (

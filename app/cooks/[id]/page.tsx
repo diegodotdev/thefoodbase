@@ -18,7 +18,7 @@ export default async function Page({ params }: { params: { id: string } }) {
         />
         <p className="font-[600] text-xl">{data[0]?.username}</p>
       </div>
-      <div className="w-full grid grid-cols-5 gap-4">
+      <div className="w-full grid grid-cols-2 lg:grid-cols-5 gap-4">
         {data?.map((i) => (
           <Link
             href={`/recipes/${i.id}`}

@@ -22,13 +22,13 @@ export default function Page() {
     <div className="py-10 min-h-[73vh] flex flex-col gap-4">
       <div className="w-full h-[12vh] flex justify-end items-center">
         <Input
-          className="w-[400px]"
+          className="w-full md:w-[400px]"
           placeholder="Search"
           onChange={(e) => setSearch(e.target.value)}
           value={search}
         />
       </div>
-      <div className="w-full grid grid-cols-5 gap-4">
+      <div className="w-full grid grid-cols-2 lg:grid-cols-5 gap-4">
         {filtered?.map((i) => (
           <Link
             href={`/recipes/${i.id}`}

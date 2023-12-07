@@ -35,7 +35,7 @@ export default function Page() {
         />
         <p className="font-[600] text-xl">{data[0]?.username}</p>
       </div>
-      <div className="w-full grid grid-cols-5 gap-4">
+      <div className="w-full grid grid-cols-2 md:grid-cols-5 gap-4">
         {data?.map((i) => (
           <Dialog key={i?.id}>
             <DialogTrigger asChild className="cursor-pointer">
@@ -51,14 +51,14 @@ export default function Page() {
               <DialogHeader>
                 <DialogTitle>{i?.title}</DialogTitle>
               </DialogHeader>
-              <div className="w-full flex gap-2">
-                <Link href={`/recipes/${i?.id}`} className="w-1/2">
+              <div className="w-full flex flex-col lg:flex-row gap-2">
+                <Link href={`/recipes/${i?.id}`} className="w-full md:w-1/2">
                   <Button className="w-full">View</Button>
                 </Link>
                 <DialogTrigger asChild>
                   <Button
                     variant="destructive"
-                    className="w-1/2"
+                    className="w-full md:w-1/2"
                     onClick={() =>
                       deleteRecipe(i?.id).then((res) => {
                         toast({

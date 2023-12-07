@@ -30,16 +30,18 @@ export default function App() {
           key={i.id}
           className={cn(
             "w-full flex gap-4",
-            i.id % 2 === 0 ? "flex-row-reverse" : "flex-row"
+            i.id % 2 === 0
+              ? "md:flex-row-reverse flex-col"
+              : "md:flex-row flex-col"
           )}
         >
-          <div className="w-1/2 grid place-items-center">
+          <div className="w-full md:w-1/2 grid place-items-center">
             <div className="w-4/5 flex flex-col gap-4">
               <p className="text-3xl font-[600]">{i.title}</p>
               <p className="text-muted-foreground text-sm">{i.sub}</p>
             </div>
           </div>
-          <div className="w-1/2 grid place-items-center">
+          <div className="w-full md:w-1/2 grid place-items-center">
             <div className="relative w-60 h-60">
               <Image src={i.image} alt="component image" fill />
             </div>
