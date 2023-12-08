@@ -15,6 +15,7 @@ import {
 } from "@clerk/nextjs";
 import { Button } from "./ui/button";
 import Link from "next/link";
+import ThemeButton from "./theme-button";
 
 export default function Menu() {
   return (
@@ -42,11 +43,13 @@ export default function Menu() {
                 </Link>
               </SheetTrigger>
             ))}
+            <ThemeButton />
             <SignOutButton>
               <Button>Sign Out</Button>
             </SignOutButton>
           </SignedIn>
           <SignedOut>
+            <ThemeButton />
             <SignInButton>
               <Button>Sign In</Button>
             </SignInButton>

@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { HERO_COMPONENTS } from "@/constants";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
+import ThemeImage from "@/components/theme-image";
 
 export default function App() {
   return (
@@ -43,7 +44,7 @@ export default function App() {
           </div>
           <div className="w-full md:w-1/2 grid place-items-center">
             <div className="relative w-60 h-60">
-              <Image src={i.image} alt="component image" fill />
+              <ThemeImage dark={i.image_dark} light={i.image_light} />
             </div>
           </div>
         </div>

@@ -19,6 +19,7 @@ import Image from "next/image";
 import { createRecipe } from "@/lib/request";
 import { useToast } from "@/components/ui/use-toast";
 import { useUser } from "@clerk/nextjs";
+import { ScrollArea } from "@/components/ui/scroll-area";
 
 type Body = {
   id: string;
@@ -183,7 +184,7 @@ export default function Page() {
             </div>
             {/* Block */}
             <div className="w-full md:w-1/2">
-              <div className="w-full h-[300px] border border-gray-200 rounded-lg p-4 flex flex-col gap-4 overflow-y-scroll no-scrollbar">
+              <ScrollArea className="w-full h-[300px] border border-gray-200 rounded-lg p-4 flex flex-col gap-2">
                 {ingredients.map((i) => (
                   <div
                     key={i.id}
@@ -198,7 +199,7 @@ export default function Page() {
                     </Button>
                   </div>
                 ))}
-              </div>
+              </ScrollArea>
             </div>
           </div>
           <p className="font-[600]">Instructions</p>
@@ -219,7 +220,7 @@ export default function Page() {
             </div>
             {/* Block */}
             <div className="w-full md:w-1/2">
-              <div className="w-full h-[300px] border border-gray-200 rounded-lg p-4 flex flex-col gap-4 overflow-y-scroll no-scrollbar">
+              <ScrollArea className="w-full h-[300px] border border-gray-200 rounded-lg p-4 flex flex-col gap-2">
                 {instructions.map((i, idx) => (
                   <div
                     key={i.id}
@@ -236,7 +237,7 @@ export default function Page() {
                     </Button>
                   </div>
                 ))}
-              </div>
+              </ScrollArea>
             </div>
           </div>
         </div>

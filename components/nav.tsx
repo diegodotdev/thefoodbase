@@ -8,6 +8,7 @@ import {
   SignedIn,
   SignedOut,
 } from "@clerk/nextjs";
+import ThemeButton from "./theme-button";
 
 export default function Nav() {
   return (
@@ -28,11 +29,13 @@ export default function Nav() {
                 <span>{link.title}</span>
               </Link>
             ))}
+            <ThemeButton />
             <SignOutButton>
               <Button>Sign Out</Button>
             </SignOutButton>
           </SignedIn>
           <SignedOut>
+            <ThemeButton />
             <SignInButton>
               <Button>Sign In</Button>
             </SignInButton>

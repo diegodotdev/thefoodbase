@@ -5,6 +5,7 @@ import Nav from "@/components/nav";
 import { ClerkProvider } from "@clerk/nextjs";
 import Footer from "@/components/footer";
 import { Toaster } from "@/components/ui/toaster";
+import { ThemeProvider } from "@/components/theme-provider";
 
 const poppins = Poppins({ subsets: ["latin"], weight: ["400", "600"] });
 
@@ -22,10 +23,12 @@ export default function RootLayout({
     <html lang="en">
       <body className={poppins.className}>
         <ClerkProvider>
-          <Nav />
-          <main className="w-[90vw] mx-auto">{children}</main>
-          <Footer />
-          <Toaster />
+          <ThemeProvider attribute="class" defaultTheme="dark">
+            <Nav />
+            <main className="w-[90vw] mx-auto">{children}</main>
+            <Footer />
+            <Toaster />
+          </ThemeProvider>
         </ClerkProvider>
       </body>
     </html>
