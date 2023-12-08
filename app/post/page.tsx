@@ -97,9 +97,9 @@ export default function Page() {
     <div className="w-full min-h-[73vh] py-10">
       <div className="w-full flex flex-col gap-10">
         {/* Top */}
-        <div className="w-full flex gap-8 h-[400px]">
+        <div className="w-full flex flex-col md:flex-row gap-8 h-[800px] md:h-[400px]">
           {/* Inputs */}
-          <div className="w-1/2 flex flex-col gap-4 h-full">
+          <div className="w-full md:w-1/2 flex flex-col gap-4 h-full">
             <Input
               type="text"
               placeholder="Title"
@@ -127,7 +127,7 @@ export default function Page() {
             />
           </div>
           {/* Image */}
-          <div className="w-1/2 h-full border border-gray-200 rounded-lg">
+          <div className="w-full md:w-1/2 h-full border border-gray-200 rounded-lg">
             {!imageAsset && !loading ? (
               <label className="relative w-full h-full grid place-items-center">
                 <input
@@ -166,9 +166,9 @@ export default function Page() {
         {/* Bottom */}
         <div className="w-full flex flex-col gap-8">
           <p className="font-[600]">Ingredients</p>
-          <div className="w-full flex gap-8">
+          <div className="w-full flex flex-col md:flex-row gap-8">
             {/* Input */}
-            <div className="w-1/2">
+            <div className="w-full md:w-1/2">
               <div className="flex items-center gap-4">
                 <Input
                   type="text"
@@ -182,7 +182,7 @@ export default function Page() {
               </div>
             </div>
             {/* Block */}
-            <div className="w-1/2">
+            <div className="w-full md:w-1/2">
               <div className="w-full h-[300px] border border-gray-200 rounded-lg p-4 flex flex-col gap-4 overflow-y-scroll no-scrollbar">
                 {ingredients.map((i) => (
                   <div
@@ -202,9 +202,9 @@ export default function Page() {
             </div>
           </div>
           <p className="font-[600]">Instructions</p>
-          <div className="w-full flex gap-8">
+          <div className="w-full flex flex-col md:flex-row gap-8">
             {/* Input */}
-            <div className="w-1/2">
+            <div className="w-full md:w-1/2">
               <div className="flex items-center gap-4">
                 <Input
                   type="text"
@@ -218,7 +218,7 @@ export default function Page() {
               </div>
             </div>
             {/* Block */}
-            <div className="w-1/2">
+            <div className="w-full md:w-1/2">
               <div className="w-full h-[300px] border border-gray-200 rounded-lg p-4 flex flex-col gap-4 overflow-y-scroll no-scrollbar">
                 {instructions.map((i, idx) => (
                   <div
