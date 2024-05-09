@@ -12,3 +12,15 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+model Recipe {
+  id String @id @default(uuid())
+  userId String
+  title String
+  description String?
+  image_url String
+  ingredients String[]
+  instructions String[]
+  servings Int
+  prep_time String
+}
