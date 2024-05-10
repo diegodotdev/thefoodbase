@@ -6,7 +6,6 @@ import PageHeader from "@/components/page-header";
 import Image from "next/image";
 import moment from "moment";
 import Link from "next/link";
-import type { Recipe } from "@prisma/client";
 
 export default async function Page({ params }: { params: { id: string } }) {
   const data = await fetchUniqueRecipe(params?.id);
@@ -82,7 +81,7 @@ export default async function Page({ params }: { params: { id: string } }) {
         </div>
         <div className="w-1/4 flex flex-col gap-5">
           <p className="text-lg font-[600]">Recent Recipes</p>
-          {recipes?.map((i: Recipe) => (
+          {recipes?.map((i: any) => (
             <Link href={`/recipes/${i.id}`} className="w-full" key={i?.id}>
               <div className="w-full flex flex-col gap-2">
                 <div className="w-full h-[200px] relative overflow-hidden rounded-lg">
