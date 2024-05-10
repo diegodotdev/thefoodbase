@@ -23,4 +23,7 @@ model Recipe {
   instructions String[]
   servings Int
   prep_time String
+  user_avatar String
+  user_name String
+  created_at DateTime @default(now())
 }

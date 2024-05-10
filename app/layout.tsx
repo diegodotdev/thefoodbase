@@ -4,6 +4,7 @@ import "./globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
 import MaxWidthWrapper from "@/components/max-width-wrapper";
 import Nav from "@/components/nav";
+import { Toaster } from "sonner";
 
 const poppins = Poppins({ subsets: ["latin"], weight: ["400", "600"] });
 
@@ -25,6 +26,7 @@ export default function RootLayout({
           <MaxWidthWrapper>
             <Nav />
             {children}
+            <Toaster />
           </MaxWidthWrapper>
         </body>
       </html>

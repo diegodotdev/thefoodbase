@@ -6,6 +6,7 @@ import { Lobster } from "next/font/google";
 import { cn } from "@/lib/utils";
 import { NAV_LINKS } from "@/constants";
 import { usePathname } from "next/navigation";
+import { Search } from "lucide-react";
 
 const lobster = Lobster({ subsets: ["latin"], weight: ["400"] });
 
@@ -14,10 +15,15 @@ export default function Nav() {
 
   return (
     <header className="w-full h-[10vh] flex justify-between items-center">
-      <Link href="/">
-        <span className={cn(lobster.className, "text-4xl")}>The Foodbase</span>
-      </Link>
-      <div className="flex items-center gap-10">
+      <div className="w-1/3 flex justify-start items-center">
+        <Link href="/">
+          <span className={cn(lobster.className, "text-4xl")}>
+            The Foodbase
+          </span>
+        </Link>
+      </div>
+
+      <div className="w-1/3 flex justify-evenly items-center">
         {NAV_LINKS.map((i) => (
           <Link href={i.href} key={i.id}>
             <span
@@ -39,7 +45,8 @@ export default function Nav() {
           </Link>
         </SignedIn>
       </div>
-      <nav>
+      <nav className="w-1/3 flex justify-end items-center gap-5">
+        <Search size="15px" />
         <SignedOut>
           <SignInButton>
             <button className="px-5 p-2 bg-black rounded-lg text-white">
