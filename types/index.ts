@@ -6,4 +6,7 @@ export interface RecipeProps {
   instructions: string[];
   prep_time: string;
   servings: number;
+  user_avatar: string;
+  user_name: string;
+  created_at: string;
 }
