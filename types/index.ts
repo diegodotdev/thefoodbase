@@ -8,5 +8,6 @@ export interface RecipeProps {
   servings: number;
   user_avatar: string;
   user_name: string;
-  created_at: string;
+  created_at?: string;
+  description?: string;
 }

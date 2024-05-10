@@ -10,6 +10,7 @@ import Image from "next/image";
 import { createRecipe } from "@/lib/actions/recipe.actions";
 import { toast } from "sonner";
 import { useUser } from "@clerk/nextjs";
+import { RecipeProps } from "@/types";
 
 const formSchema = z.object({
   title: z.string().min(1),
@@ -73,7 +74,7 @@ export default function RecipeForm({ userId }: { userId: string }) {
     const ingredients = values.ingredients.map((i) => i.value);
     const instructions = values.instructions.map((i) => i.value);
 
-    const body = {
+    const body: RecipeProps = {
       userId: values.userId,
       title: values.title,
       image_url: values.image_url,
@@ -82,8 +83,8 @@ export default function RecipeForm({ userId }: { userId: string }) {
       prep_time: values.prep_time,
       servings: parseInt(values.servings),
       description: values.description,
-      user_avatar: user?.imageUrl,
-      user_name: user?.firstName,
+      user_avatar: user?.imageUrl as string,
+      user_name: user?.firstName as string,
     };
 
     const data = await createRecipe(body);
