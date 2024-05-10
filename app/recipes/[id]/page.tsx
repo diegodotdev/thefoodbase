@@ -8,7 +8,7 @@ import moment from "moment";
 import Link from "next/link";
 
 export default async function Page({ params }: { params: { id: string } }) {
-  const data = await fetchUniqueRecipe(params?.id);
+  const data: any = await fetchUniqueRecipe(params?.id);
   const recipes: any = await fetchAllRecipes();
 
   return (
