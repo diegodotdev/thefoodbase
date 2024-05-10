@@ -63,7 +63,7 @@ export default async function Page({ params }: { params: { id: string } }) {
           <p>{data?.description}</p>
           <div className="w-full flex flex-col gap-5 justify-start items-start">
             <p className="text-lg font-[600]">Ingredients</p>
-            {data?.ingredients?.map((i: string, idx) => (
+            {data?.ingredients?.map((i: string, idx: number) => (
               <label key={idx} className="flex items-center gap-2">
                 <input type="checkbox" className="w-4 h-4" />
                 <p>{i}</p>
@@ -72,7 +72,7 @@ export default async function Page({ params }: { params: { id: string } }) {
           </div>
           <div className="w-full flex flex-col gap-5 justify-start items-start">
             <p className="text-lg font-[600]">Instructions</p>
-            {data?.instructions?.map((i, idx) => (
+            {data?.instructions?.map((i: string, idx: number) => (
               <p key={idx}>
                 {idx + 1}. {i}
               </p>
