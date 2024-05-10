@@ -6,7 +6,7 @@ import PageHeader from "@/components/page-header";
 import Image from "next/image";
 import moment from "moment";
 import Link from "next/link";
-import { Recipe } from "@prisma/client";
+import type { Recipe } from "@prisma/client";
 
 export default async function Page({ params }: { params: { id: string } }) {
   const data = await fetchUniqueRecipe(params?.id);
