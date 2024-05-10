@@ -8,7 +8,7 @@ import moment from "moment";
 import Link from "next/link";
 
 export default async function Page({ params }: { params: { id: string } }) {
-  const data: any = await fetchUniqueRecipe(params?.id);
+  const data = await fetchUniqueRecipe(params?.id);
   const recipes: any = await fetchAllRecipes();
 
   return (
@@ -63,7 +63,7 @@ export default async function Page({ params }: { params: { id: string } }) {
           <p>{data?.description}</p>
           <div className="w-full flex flex-col gap-5 justify-start items-start">
             <p className="text-lg font-[600]">Ingredients</p>
-            {data?.ingredients?.map((i, idx) => (
+            {data?.ingredients?.map((i: string, idx) => (
               <label key={idx} className="flex items-center gap-2">
                 <input type="checkbox" className="w-4 h-4" />
                 <p>{i}</p>
