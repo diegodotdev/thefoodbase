@@ -74,7 +74,7 @@ export default async function Page({ params }: { params: { id: string } }) {
           <div className="w-full flex flex-col gap-5 justify-start items-start">
             <p className="text-lg font-[600]">Instructions</p>
             {data?.instructions?.map((i, idx) => (
-              <p>
+              <p key={idx}>
                 {idx + 1}. {i}
               </p>
             ))}
