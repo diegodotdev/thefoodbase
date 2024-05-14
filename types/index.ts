@@ -1,13 +1,13 @@
 export interface RecipeProps {
-  userId: string;
   title: string;
-  image_url: string;
+  description: string;
+  category: string;
   ingredients: string[];
   instructions: string[];
-  prep_time: string;
-  servings: number;
-  user_avatar: string;
-  user_name: string;
-  created_at?: string;
-  description?: string;
+  image: string;
+  userId: string;
+  userAvatar: string;
+  userName: string;
+  servings: string;
+  prepTime: string;
 }

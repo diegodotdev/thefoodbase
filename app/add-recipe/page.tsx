@@ -1,9 +1,10 @@
 import { auth } from "@clerk/nextjs/server";
 import RecipeForm from "@/components/recipe-form";
+import { notFound } from "next/navigation";
 
 export default function Page() {
   const { userId } = auth();
 
-  if (!userId) throw new Error("No user was found, refresh the page");
-  return <RecipeForm userId={userId} />;
+  if (!userId) return notFound();
+  return <RecipeForm />;
 }

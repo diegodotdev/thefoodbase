@@ -1,9 +1,9 @@
-import { fetchAllRecipes } from "@/lib/actions/recipe.actions";
 import PageHeader from "@/components/page-header";
 import Recipes from "@/components/recipes";
+import { getAllRecipes } from "@/lib/actions/recipes.actions";
 
 export default async function Page() {
-  const data = await fetchAllRecipes();
+  const data = await getAllRecipes();
 
   return (
     <div>

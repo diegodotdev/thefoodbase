@@ -9,7 +9,7 @@ export default function Recipes({ data }: { data: any }) {
           <div className="w-full flex flex-col gap-2">
             <div className="w-full h-[200px] relative overflow-hidden rounded-lg">
               <Image
-                src={i?.image_url}
+                src={i?.image}
                 alt={i?.title}
                 fill
                 className="object-cover"

@@ -7,48 +7,45 @@ import { useState } from "react";
 import { UploadDropzone } from "@/lib/uploadthing";
 import { Trash, X } from "lucide-react";
 import Image from "next/image";
-import { createRecipe } from "@/lib/actions/recipe.actions";
+import { addRecipe } from "@/lib/actions/recipes.actions";
 import { toast } from "sonner";
 import { useUser } from "@clerk/nextjs";
-import { RecipeProps } from "@/types";
 
 const formSchema = z.object({
-  title: z.string().min(1),
-  userId: z.string().min(1),
-  description: z.string().max(300).optional(),
-  image_url: z.string().min(1),
-  prep_time: z.string().min(1),
+  title: z.string(),
+  userId: z.string(),
+  description: z.string().max(300),
+  image: z.string(),
+  prepTime: z.string(),
   servings: z.string(),
-  ingredients: z
-    .array(
-      z.object({
-        value: z.string(),
-      })
-    )
-    .min(1),
-  instructions: z
-    .array(
-      z.object({
-        value: z.string(),
-      })
-    )
-    .min(1),
+  category: z.string(),
+  ingredients: z.array(
+    z.object({
+      value: z.string(),
+    })
+  ),
+  instructions: z.array(
+    z.object({
+      value: z.string(),
+    })
+  ),
 });
 
-export default function RecipeForm({ userId }: { userId: string }) {
+export default function RecipeForm() {
   const { user } = useUser();
   const [image, setImage] = useState<string | null>(null);
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      userId: userId,
+      userId: "",
       title: "",
-      image_url: "",
+      image: "",
       ingredients: [],
       instructions: [],
-      prep_time: "",
+      prepTime: "",
       description: "",
       servings: "",
+      category: "",
     },
   });
 
@@ -71,31 +68,19 @@ export default function RecipeForm({ userId }: { userId: string }) {
   });
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
-    const ingredients = values.ingredients.map((i) => i.value);
-    const instructions = values.instructions.map((i) => i.value);
+    const ings = values.ingredients.map((i) => i.value);
+    const ins = values.instructions.map((i) => i.value);
 
-    const body: RecipeProps = {
-      userId: values.userId,
-      title: values.title,
-      image_url: values.image_url,
-      ingredients,
-      instructions,
-      prep_time: values.prep_time,
-      servings: parseInt(values.servings),
-      description: values.description,
-      user_avatar: user?.imageUrl as string,
-      user_name: user?.firstName as string,
+    const body = {
+      ...values,
+      userId: user?.id as string,
+      userAvatar: user?.imageUrl as string,
+      userName: user?.firstName as string,
+      ingredients: ings,
+      instructions: ins,
     };
 
-    const data = await createRecipe(body);
-
-    if (data) {
-      form.reset();
-      setImage(null);
-      toast.success("Your recipe has been added!");
-    } else {
-      toast.error("Something went wrong, try again");
-    }
+    await addRecipe(body);
   };
 
   return (
@@ -132,7 +117,7 @@ export default function RecipeForm({ userId }: { userId: string }) {
               onClientUploadComplete={(res: any) => {
                 // Do something with the response
                 setImage(res[0]?.url);
-                form.setValue("image_url", res[0]?.url);
+                form.setValue("image", res[0]?.url);
               }}
               onUploadError={(error: Error) => {
                 // Do something with the error.
@@ -145,7 +130,7 @@ export default function RecipeForm({ userId }: { userId: string }) {
             <p className="text-lg">Recipe image:</p>
             <div className="w-full h-[245px] relative p-4 border border-black rounded-lg">
               <button
-                className="p-2 rounded-lg bg-red-500 text-white absolute top-4 right-4 cursor-pointer"
+                className="p-2 rounded-lg bg-red-500 text-white absolute top-4 right-4 cursor-pointer z-50"
                 onClick={() => setImage(null)}
                 type="button"
               >
@@ -175,37 +160,58 @@ export default function RecipeForm({ userId }: { userId: string }) {
             )}
           />
         </label>
-        <div className="w-full gap-5 flex items-center justify-between">
-          <div className="w-1/2 flex items-center gap-2">
-            <p>Servings:</p>
+        <div className="w-full gap-5 flex items-center justify-center">
+          <div className="w-1/3 flex items-center gap-2">
             <Controller
               name="servings"
               control={form.control}
               render={({ field }) => (
                 <input
                   type="number"
-                  className="w-1/2 px-5 py-2 rounded-lg border border-black"
+                  className="w-full px-5 py-2 rounded-lg border border-black"
+                  placeholder="Servings"
                   {...field}
                 />
               )}
             />
           </div>
-          <div className="w-1/2 flex justify-between items-center gap-2">
-            <p>Prep Time:</p>
+          <div className="w-1/3 flex justify-between items-center gap-2">
             <Controller
-              name="prep_time"
+              name="prepTime"
               control={form.control}
               render={({ field }) => (
                 <input
                   {...field}
-                  className="w-1/2 px-5 py-2 rounded-lg border border-black"
+                  className="w-full px-5 py-2 rounded-lg border border-black"
+                  placeholder="Prep Time"
                 />
+              )}
+            />
+          </div>
+          <div className="w-1/3 flex justify-between items-center gap-2">
+            <Controller
+              name="category"
+              control={form.control}
+              render={({ field }) => (
+                <select
+                  {...field}
+                  className="w-full border border-black px-5 py-2 rounded-lg"
+                >
+                  <option>Category</option>
+                  <option value="Breakfast">Breakfast</option>
+                  <option value="Dinner">Dinner</option>
+                  <option value="Supper">Supper</option>
+                  <option value="Snack">Snack</option>
+                  <option value="Drink">Drink</option>
+                  <option value="Brunch">Brunch</option>
+                  <option value="Dessert">Dessert</option>
+                </select>
               )}
             />
           </div>
         </div>
         <div className="w-full flex flex-col gap-5">
-          <div className="w-full flex justify-between items-center">
+          <div className="w-full flex justify-between items-center sticky top-0 bg-white">
             <p className="text-lg">Recipe ingredients:</p>
             <button
               className="px-5 py-2 bg-black text-white rounded-lg"
@@ -239,7 +245,7 @@ export default function RecipeForm({ userId }: { userId: string }) {
           ))}
         </div>
         <div className="w-full flex flex-col gap-5">
-          <div className="w-full flex justify-between items-center">
+          <div className="w-full flex justify-between items-center sticky top-0 bg-white">
             <p className="text-lg">Recipe instructions:</p>
             <button
               className="px-5 py-2 bg-black text-white rounded-lg"
