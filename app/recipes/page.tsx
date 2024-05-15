@@ -6,7 +6,7 @@ export default async function Page() {
   const data = await getAllRecipes();
 
   return (
-    <div>
+    <div className="min-h-[82vh]">
       <PageHeader title="Recipes" breadcrumb="Home > Recipes" />
       <Recipes data={data as any} />
     </div>

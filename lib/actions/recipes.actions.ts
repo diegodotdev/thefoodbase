@@ -30,3 +30,28 @@ export const getUniqueRecipe = async (id: string) => {
 
   return data;
 };
+
+export const getRecipesByCategory = async (id: string) => {
+  const data = await prisma.recipe.findMany({
+    where: {
+      category: id,
+    },
+  });
+
+  return data;
+};
+
+export const getRecentRecipes = async () => {
+  const data = await prisma.recipe.findMany({
+    orderBy: {
+      createdAt: "desc",
+    },
+    select: {
+      image: true,
+      id: true,
+      title: true,
+    },
+  });
+
+  return data;
+};

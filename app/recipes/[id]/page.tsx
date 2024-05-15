@@ -1,4 +1,7 @@
-import { getAllRecipes, getUniqueRecipe } from "@/lib/actions/recipes.actions";
+import {
+  getRecipesByCategory,
+  getUniqueRecipe,
+} from "@/lib/actions/recipes.actions";
 import PageHeader from "@/components/page-header";
 import Image from "next/image";
 import moment from "moment";
@@ -6,10 +9,10 @@ import Link from "next/link";
 
 export default async function Page({ params }: { params: { id: string } }) {
   const data = await getUniqueRecipe(params?.id);
-  const recipes: any = await getAllRecipes();
+  const recipes: any = await getRecipesByCategory(data?.category as string);
 
   return (
-    <div className="py-5">
+    <div className="py-5 min-h-[82vh]">
       <PageHeader
         title={data?.title as string}
         breadcrumb={`Home > Recipes > ${data?.title}`}
@@ -77,8 +80,8 @@ export default async function Page({ params }: { params: { id: string } }) {
           </div>
         </div>
         <div className="w-1/4 flex flex-col gap-5">
-          <p className="text-lg font-[600]">Recent Recipes</p>
-          {recipes?.map((i: any) => (
+          <p className="text-lg font-[600]">Similar Recipes</p>
+          {recipes?.slice(0, 9)?.map((i: any) => (
             <Link href={`/recipes/${i.id}`} className="w-full" key={i?.id}>
               <div className="w-full flex flex-col gap-2">
                 <div className="w-full h-[200px] relative overflow-hidden rounded-lg">
@@ -89,7 +92,6 @@ export default async function Page({ params }: { params: { id: string } }) {
                     className="object-cover"
                   />
                 </div>
-                <p className="font-[600]">{i?.title}</p>
               </div>
             </Link>
           ))}
