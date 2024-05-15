@@ -7,10 +7,10 @@ export default async function Home() {
   const data = await getRecentRecipes();
 
   return (
-    <div className="w-full min-h-[90vh] py-5">
+    <div className="w-full min-h-[90vh] py-5 flex flex-col gap-[10vh] md:gap-0">
       <div className="w-full h-[60vh] flex gap-5 justify-between flex-col md:flex-row">
         <div className="w-full md:w-1/2 h-full flex flex-col justify-center items-center md:items-start gap-5">
-          <p className="text-5xl md:text-6xl font-[600]">
+          <p className="text-4xl md:text-6xl font-[600]">
             Your Daily Dish
             <br />A{" "}
             <span className="bg-gradient-to-r from-red-500 via-orange-500 to-yellow-500 bg-clip-text text-transparent">
@@ -42,7 +42,7 @@ export default async function Home() {
           </div>
         </div>
         <div className="w-full md:w-1/2 py-5 md:h-[60vh] flex flex-col gap-5 justify-center items-center">
-          <p className="text-4xl font-[600]">
+          <p className="text-3xl md:text-4xl font-[600]">
             Share Your{" "}
             <span className="bg-clip-text bg-gradient-to-tr from-red-500 via-orange-500 to-yellow-500 text-transparent">
               Recipes
