@@ -86,7 +86,9 @@ export default function RecipeForm() {
   return (
     <form onSubmit={form.handleSubmit(onSubmit)} className="py-5">
       <div className="w-full flex justify-between items-center py-5">
-        <p className="text-4xl font-[600]">Create new recipe</p>
+        <p className="text-4xl font-[600]">
+          Create <span className="hidden md:inline">new recipe</span>
+        </p>
         <button
           type="submit"
           className="px-5 py-2 bg-black text-white rounded-lg cursor-pointer"
@@ -94,7 +96,7 @@ export default function RecipeForm() {
           Add
         </button>
       </div>
-      <div className="flex flex-col gap-5 w-1/2 mx-auto ">
+      <div className="flex flex-col gap-5 w-full md:w-1/2 mx-auto ">
         <label className="w-full flex flex-col gap-5">
           <p className="text-lg">Recipe title:</p>
           <Controller

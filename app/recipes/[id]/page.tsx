@@ -19,7 +19,7 @@ export default async function Page({ params }: { params: { id: string } }) {
       />
       <div className="w-full flex gap-5">
         {/* Left */}
-        <div className="w-3/4 flex flex-col gap-10">
+        <div className="w-full md:w-3/4 flex flex-col gap-10">
           {/* User and Date */}
           <div className="w-full flex justify-start items-center gap-5">
             <Link href={`/users/${data?.userId}`}>
@@ -79,7 +79,7 @@ export default async function Page({ params }: { params: { id: string } }) {
             ))}
           </div>
         </div>
-        <div className="w-1/4 flex flex-col gap-5">
+        <div className="w-1/4 hidden md:flex flex-col gap-5">
           <p className="text-lg font-[600]">Similar Recipes</p>
           {recipes?.slice(0, 9)?.map((i: any) => (
             <Link href={`/recipes/${i.id}`} className="w-full" key={i?.id}>

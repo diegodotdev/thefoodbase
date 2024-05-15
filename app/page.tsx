@@ -8,9 +8,9 @@ export default async function Home() {
 
   return (
     <div className="w-full min-h-[90vh] py-5">
-      <div className="w-full h-[60vh] flex gap-5 justify-between">
-        <div className="w-1/2 h-full flex flex-col justify-center items-start gap-5">
-          <p className="text-6xl font-[600]">
+      <div className="w-full h-[60vh] flex gap-5 justify-between flex-col md:flex-row">
+        <div className="w-full md:w-1/2 h-full flex flex-col justify-center items-center md:items-start gap-5">
+          <p className="text-5xl md:text-6xl font-[600]">
             Your Daily Dish
             <br />A{" "}
             <span className="bg-gradient-to-r from-red-500 via-orange-500 to-yellow-500 bg-clip-text text-transparent">
@@ -19,8 +19,8 @@ export default async function Home() {
             Journey
           </p>
         </div>
-        <div className="w-1/2 h-full grid place-items-center">
-          <div className="relative w-96 h-96 rounded-full overflow-hidden">
+        <div className="w-full md:w-1/2 h-full grid place-items-center">
+          <div className="relative w-72 md:w-96 h-72 md:h-96 rounded-full overflow-hidden">
             <Image
               src="/assets/hero.jpg"
               alt="hero image"
@@ -30,8 +30,8 @@ export default async function Home() {
           </div>
         </div>
       </div>
-      <div className="w-full flex">
-        <div className="w-1/2 h-[60vh] grid place-items-center">
+      <div className="w-full flex md:flex-row flex-col">
+        <div className="w-full md:w-1/2 h-[40vh] md:h-[60vh] grid place-items-center">
           <div className="w-3/4 h-1/2 relative rounded-lg overflow-hidden">
             <Image
               src="/assets/photography.jpg"
@@ -41,7 +41,7 @@ export default async function Home() {
             />
           </div>
         </div>
-        <div className="w-1/2 h-[60vh] flex flex-col gap-5 justify-center items-center">
+        <div className="w-full md:w-1/2 py-5 md:h-[60vh] flex flex-col gap-5 justify-center items-center">
           <p className="text-4xl font-[600]">
             Share Your{" "}
             <span className="bg-clip-text bg-gradient-to-tr from-red-500 via-orange-500 to-yellow-500 text-transparent">
@@ -63,7 +63,7 @@ export default async function Home() {
         <div className="py-5">
           <p className="text-3xl font-[600]">Recent Recipes</p>
         </div>
-        <div className="w-full grid place-items-start gap-5 lg:grid-cols-5 md:grid-cols-3 grid-cols-1">
+        <div className="w-full grid place-items-start gap-5 lg:grid-cols-5 md:grid-cols-3 grid-cols-2">
           {data?.map((i) => (
             <Link
               href={`/recipes/${i.id}`}
@@ -83,11 +83,11 @@ export default async function Home() {
           ))}
         </div>
       </div>
-      <div className="flex flex-col justify-center items-start gap-5 h-[40vh]">
+      <div className="flex flex-col justify-center items-start gap-5 md:h-[40vh]">
         <div className="py-5">
           <p className="text-3xl font-[600]">Top Categories</p>
         </div>
-        <div className="w-full flex items-center justify-evenly gap-5">
+        <div className="w-full md:flex md:items-center md:justify-evenly grid grid-cols-2 place-items-center gap-5">
           {CATEGORIES.map((i) => (
             <Link
               href={i.href}
