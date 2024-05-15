@@ -5,7 +5,7 @@ import Image from "next/image";
 
 export default function Categories() {
   return (
-    <div className="w-full min-h-[82vh]">
+    <div className="w-full min-h-[82vh] py-5">
       <PageHeader title="Categories" breadcrumb="Home > Categories" />
 
       <div className="w-full gap-5 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 place-items-center">

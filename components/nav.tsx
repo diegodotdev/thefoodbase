@@ -77,11 +77,11 @@ export default function Nav() {
           </MenuButton>
           <MenuItems
             anchor="bottom end"
-            className="flex flex-col gap-2 bg-black text-white rounded-lg p-1 w-52 text-sm/6"
+            className="z-50 flex flex-col gap-2 bg-black text-white rounded-lg p-1 w-52 text-sm/6"
           >
             <MenuItem>
               <Link href="/" className="w-full p-3">
-                <button className="w-full h-full flex items-cenetr justify-start">
+                <button className="w-full h-full flex items-center justify-start">
                   Home
                 </button>
               </Link>
