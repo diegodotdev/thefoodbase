@@ -80,7 +80,10 @@ export default function RecipeForm() {
       instructions: ins,
     };
 
-    await addRecipe(body);
+    await addRecipe(body).then(() => {
+      form.reset();
+      toast.success("Recipe has been added");
+    });
   };
 
   return (
